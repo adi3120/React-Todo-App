@@ -167,3 +167,42 @@
 		)
 	  }
 	}
+	
+## Adding a delete button to each list element
+
+	<button className="btn btn-danger my-2 col-sm-2 offset-1">X</button>
+
+> But right now its doing nothing
+> What's the plan then
+> So, we'll make a handleDelete function inside our App component
+
+	handleDelete=id=>{
+		const Olditems=[...this.state.items]
+		const items=Olditems.filter((element,i)=>{
+			return i!==id;
+		})
+
+		this.setState({
+			items:items
+		})
+	}
+>It filters the OldItems list and appends only those elements whose Id is not equal to the id of deleted item
+>
+>and then sets the item list to newitem list
+
+## How will we pass use this handleDelete function
+
+> We will pass this function as a props object to the Plan component function as *sendData* and we will also send the id and key
+
+	<ul className="list-unstyled row m-5">
+	{
+		this.state.items.map((value,i)=>{
+			return <Plan key={i} id={i} value={value} sendData={this.handleDelete}/>
+		})
+	}
+	</ul>
+	
+> In the Plan component we will add onclick event handler and provide it a function so whenever it is clicked it takes the id to handleDelete function and works on that id
+
+	<button className="btn btn-danger my-2 col-sm-2 offset-1" onClick={()=>{props.sendData(props.id)}}>X</button>
+	
