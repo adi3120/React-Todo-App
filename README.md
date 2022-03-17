@@ -50,4 +50,4 @@
 
 ## After this much work
 
->> ![alt text](Screenshot 2022-03-17 221512.png)
+>> ![alt text](1.png)
