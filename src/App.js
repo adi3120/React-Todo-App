@@ -25,6 +25,16 @@ class App extends Component {
 			})
 		}
 	}
+	handleDelete=id=>{
+		const Olditems=[...this.state.items]
+		const items=Olditems.filter((element,i)=>{
+			return i!==id;
+		})
+
+		this.setState({
+			items:items
+		})
+	}
   render() {
 	return (
 	  <div className='container-fluid my-5'>
@@ -45,7 +55,7 @@ class App extends Component {
 						  <ul className="list-unstyled row m-5">
 							{
 								this.state.items.map((value,i)=>{
-									return <Plan value={value}/>
+									return <Plan key={i} id={i} value={value} sendData={this.handleDelete}/>
 								})
 							}
 						  </ul>
